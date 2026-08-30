@@ -1,0 +1,15 @@
+{
+  "name": "reflex",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Delivery coordination app for small retailers - retailer, dispatcher, and rider dashboards with live sync.",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "npm start --prefix server",
+    "migrate": "npm run migrate --prefix server",
+    "seed": "npm run seed --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client"
+  }
+}

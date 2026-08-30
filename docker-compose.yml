@@ -1,0 +1,25 @@
+# A disposable local Postgres for development and testing - not for
+# production. Run `docker compose up -d` to get a database at
+# postgresql://postgres:postgres@localhost:5432/reflex in about 10 seconds,
+# with nothing to install or configure. Delete it any time with
+# `docker compose down -v` and start clean the next time.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: reflex
+    ports:
+      - "5432:5432"
+    volumes:
+      - reflex_dummy_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  reflex_dummy_db:
